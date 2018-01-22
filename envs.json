@@ -1,0 +1,146 @@
+{
+    "base" : {
+        "ENV" : "base",
+        "env_dir" : "/home/users/ecommerce/env/${ENV}",
+        "env_dir_tfidf" : "/root/env/${ENV}",
+
+        "cb_common_app_dir" : "${env_dir}/apps",
+        "cb_common_data_dir" : "${env_dir}/data",
+        "cb_common_tmp_dir" : "${env_dir}/tmp",
+        "cb_common_app_dir_tfidf" : "${env_dir_tfidf}/apps",
+        "cb_common_data_dir_tfidf" : "${env_dir_tfidf}/data",
+        
+        "server_tsmanager_host" : "http://host:8080",
+        "server_datasource_host"  : "http://host:8080",
+        "server_datasource_host_import"  : "http://host:8080",
+        "server_datasource_online_host" : "http://host:8080",
+        "server_product_host" : "http://host:8080",
+        "server_clipboard_host" : "http://host:8080",
+
+        "cb_hdfs_base_dir" : "${hdfs.job.cb.data.base}",
+        "cb_min_trusted_hot_product_count" : "1",
+        "cb_min_trusted_hot_product_count_for_each_gender" : "1",
+        "cb_hdfs_event_input_dir" : "${hdfs.root}/event/input",
+        "cb_hdfs_event_output_dir" : "${hdfs.root}/event/output",
+        "cb_validator_robot_act_id" : "2241937876",
+        "cb_uservector_instance_id" : "${ENV}",
+        "cb_job_alertreceivers" : "fqi@test.org",
+        "cb_job_reportreceivers" : "fqi@test.org",
+        "cb_job_tfidf_path_on_remote_node" : "${cb_common_app_dir_tfidf}/contentBase/tfidf",
+        "cb_job_tfidf_data_path_on_remote_node" : "${cb_common_data_dir_tfidf}/contentBase/tfidf",
+        "cb_user_vector_base_dir" : "${env_dir}/apps/contentBase/userVector",
+        "cb_user_vector_online_dir" : "${env_dir}/apps/contentBase/userVector",
+        "cb_uservector_whitelist" : "",
+        "candidate_local" : "${cb_common_data_dir}/candidate",
+
+        "hdfs.root" : "hdfs://scarlett/user/ecommerce/${ENV}",
+        "hdfs.cb.base" : "rec_integration/cb",
+        "hdfs.job.cb.data.base" : "${hdfs.root}/${hdfs.cb.base}",
+        
+        "hdfs.candidate" : "${hdfs.job.cb.data.base}/data/candidate",
+        "hdfs.candidate.boards" : "${hdfs.job.cb.data.base}/data/boards",
+
+        "hdfs.rec-cb-decomposer" : "${cb_hdfs_base_dir}/rec-cb-decomposer",
+        "hdfs.product.vector" : "${hdfs.rec-cb-decomposer}/out/textU",
+        "hdfs.product.text" : "${hdfs.rec-cb-decomposer}/data/product.text",
+        "hdfs.product.idf" : "${hdfs.rec-cb-decomposer}/data/product.idf",
+
+        "hdfs.user.info" : "${hdfs.root}/user_info/",
+        "hdfs.event.out.dir" : "${hdfs.root}/event/output",
+
+        "hdfs.spark.processEvents.base" : "${hdfs.root}/spark/result/processEvents",
+        "hdfs.user.vector" : "${hdfs.spark.processEvents.base}/userVector",
+        "hdfs.user.product.blacklist" : "${hdfs.spark.processEvents.base}/blacklist",
+        "hdfs.user.search.history" : "${hdfs.spark.processEvents.base}/searchResult",
+        "hdfs.user.unique" : "${hdfs.spark.processEvents.base}/uniqueUser",
+
+        "hdfs.user.friend.vector" : "${hdfs.root}/friendVector/out",
+        "hdfs.addressbook" : "hdfs://scarlett/user/ecommerce/userVector/ab",
+
+        "hdfs.spark.calculateCB.base" : "${hdfs.root}/spark/result/calculateCB",
+        "hdfs.calculateCB-yarn.out.cb" : "${hdfs.spark.calculateCB.base}/cb",
+        "hdfs.calculateCB-yarn.out.rec" : "${hdfs.spark.calculateCB.base}/rec",
+
+        "spark.conf.dir" : "${hdfs.root}/spark/conf",
+        "spark.contentBase.conf" : "${spark.conf.dir}/ml.config",
+        "abtest.contentBase.conf" : "${spark.conf.dir}/ab.conf",
+
+
+        "hadoop.calFriendVector.root" : "${hdfs.root}/userVector",
+        "hadoop.calFriendVector.temp" : "${hadoop.calFriendVector.root}/temp",
+
+        "scheduler.task.node.tfidf.path" : "${env_dir_tfidf}/slave/",
+
+        "spark.app.root" : "${env_dir}/apps/spark",
+        "abtest.conf.local" : "${env_dir}/apps/recAbTestTool/conf/ab.conf",
+        "spark.conf.local" : "${env_dir}/apps/spark/conf/ml.config",
+        
+        "hive.table.shop.history.event" : "ecommerce.${ENV}_event_shop_history_event",
+
+        "shop.algorithm.country.enabled" : "true",
+        "shop.algorithm.country.simulate.multi" : "false",
+        
+        "candidate.list" : ",10",
+        
+        "internal.product.use.legacy" : "false",
+        
+        "shop.algorithm.content.clipboard.enabled" : "true"
+    },
+    
+    "prod" : {
+        "__EXTENDS__" : "base",
+        "ENV" : "prod",
+        
+        "server_tsmanager_host" : "https://ecommeditorialstore.test.org:443",
+        "server_product_host" : "https://ecommproduct.test.org:443",
+        "server_clipboard_host" : "https://ecommclipboard.test.org:443",
+        "server_datasource_host"  : "http://172.18.134.198:8080",
+        "server_datasource_host_import"  : "https://ecommdatasource.test.org:443",
+        "server_datasource_online_host" : "https://ecommdatasource.test.org:443",
+        
+        "shop.algorithm.country.enabled" : "false",
+        "shop.algorithm.country.simulate.multi" : "true",
+        
+        "candidate.list" : ",10;B,10",
+        "internal.product.use.legacy" : "true",
+        "shop.algorithm.content.clipboard.enabled" : "false"
+    },
+
+    "stag" : {
+        "__EXTENDS__" : "base",
+        "ENV" : "stag",
+        
+        "server_tsmanager_host" : "https://ecommeditorialstore.test.org:443",
+        "server_product_host" : "https://ecommproduct.test.org:443",
+        "server_clipboard_host" : "https://ecommclipboard.test.org:443",
+        "server_datasource_host"  : "http://52.10.116.13:8080",
+        "server_datasource_host_import"  : "http://52.10.116.13:8080",
+        "server_datasource_online_host" : "http://52.10.116.13:8080",
+        
+        "shop.algorithm.country.enabled" : "false",
+        "shop.algorithm.country.simulate.multi" : "true",
+        
+        "candidate.list" : ",10;B,10",
+        "internal.product.use.legacy" : "true",
+        "shop.algorithm.content.clipboard.enabled" : "false"
+    },
+    
+    "test" : {
+        "__EXTENDS__" : "base",
+        "ENV" : "test",
+        
+        "server_tsmanager_host" : "http://54.201.106.80:8080",
+        "server_product_host" : "http://54.201.106.80:8080",
+        "server_clipboard_host" : "http://54.201.106.80:8080",
+        "server_datasource_host"  : "http://52.10.116.13:8080",
+        "server_datasource_host_import"  : "http://52.10.116.13:8080",
+        "server_datasource_online_host" : "http://52.10.116.13:8080",
+        
+        "shop.algorithm.country.enabled" : "true",
+        "shop.algorithm.country.simulate.multi" : "false",
+        
+        "candidate.list" : ",10;B,10",
+        "internal.product.use.legacy" : "false",
+        "shop.algorithm.content.clipboard.enabled" : "true"
+    },
+}

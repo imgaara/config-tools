@@ -1,0 +1,8 @@
+Usage:
+python config_rep.py --config <CONFIG_TEMPLATE> --econfig <ENV_DICT> --env <ENV_TYPE> --verbose
+
+it will replace the value of given key with dict value
+
+CONFIG_TEMPLATE: the template file to change configs
+ENV_DICT:        dictionary for different environments
+ENV_TYPE:        environments: test, stag, or prod

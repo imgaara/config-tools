@@ -1,0 +1,303 @@
+{
+    "contentBase/tagProductGender": [
+        {
+            "path" : "scripts/setup.sh",
+            "replacement" : {
+                "export PRODUCT_URL" : "${server_product_host}/product",
+                "export TSMANAGER_URL" : "${server_tsmanager_host}/tsmanagerStore",
+                "export CLIPBOARD_URL" : "${server_clipboard_host}/clipboard",
+                "export MIN_COUNT" : "${cb_min_trusted_hot_product_count}",
+                "export MIN_COUNT_EACH_GENDER" : "${cb_min_trusted_hot_product_count_for_each_gender}",
+                "export USE_DUMMY_COUNTRIES" : "${shop.algorithm.country.simulate.multi}",
+                "export CLIPBOARD_ENABLED" : "${shop.algorithm.content.clipboard.enabled}"
+            }
+        },
+        {
+            "path" : "scripts/generate_candidates.sh",
+            "replacement" : {
+                "CANDIDATE_DIR" : "${candidate_local}"
+            }
+        },
+        {
+            "path" : "conf/local.properties",
+            "replacement" : {
+                "product.remote.rest.host" : "${server_product_host}",
+                "tsmanagerStore.remote.rest.ranking.host" : "${server_tsmanager_host}/tsmanagerStore/ranking/",
+                "tsmanagerStore.remote.rest.blacklist.host" : "${server_tsmanager_host}/tsmanagerStore/blacklist/",
+                "tsmanagerStore.remote.rest.hotproduct.host" : "${server_tsmanager_host}/tsmanagerStore/hotproduct/",
+                "tsmanagerStore.remote.rest.pushevent.host" : "${server_tsmanager_host}/tsmanagerStore/pushevent/",
+                "tsmanagerStore.remote.rest.recommendedclipboard.host" : "${server_tsmanager_host}/tsmanagerStore/recommendedclipboard/",
+                "tsmanagerStore.remote.rest.tsmanagersettings.host" : "${server_tsmanager_host}/tsmanagerStore/tsmanagersettings/",
+                "shop.algorithm.provider.commons.intertal.product.use.legacy" : "${internal.product.use.legacy}",
+                "tsmanagerStore.remote.rest.host" : "${server_tsmanager_host}/tsmanagerStore/"
+            }
+        },
+        {
+            "path" : "scripts/dump_prods.sh",
+            "replacement" : {
+                "RM_OLD_HOTPRODUCT_TMP" : "${cb_common_tmp_dir}/old_hot_products"
+            }
+        },
+        {
+            "path" : "scripts/dump_boards.sh",
+            "replacement" : {
+                "RM_OLD_BOARD_TMP" : "${cb_common_tmp_dir}/old_boards"
+            }
+        }
+    ], 
+
+    "contentBase/datatransfer": [
+        {
+            "path" : "scripts/env.sh",
+            "replacement" : {
+                "export BASEDIR" : "${hdfs.rec-cb-decomposer}"
+            }
+        },
+        {
+            "path" : "conf/local.properties",
+            "replacement" : {
+                "datasource.remote.rest.host" : "${server_datasource_host}",
+                "product.remote.rest.host" : "${server_product_host}"
+            }
+        },
+        {   
+            "path" : "conf/monitoring.properties",
+            "replacement" : {
+                "snmp.port" : "0"
+            }
+        }
+    ],
+
+    "contentBase/rec-cb-decomposer": [
+        {
+            "path" : "scripts/env.sh",
+            "replacement" : {
+                "export BASEDIR" : "${hdfs.rec-cb-decomposer}"
+            }
+        }
+    ],
+
+    "contentBase/dataSet": [
+        {
+            "path" : "scripts/get_event.sh",
+            "replacement" : {
+                "dir" : "${cb_hdfs_event_input_dir}",
+                "hdfs_out" : "${cb_hdfs_event_output_dir}",
+                "out_file" : "${cb_common_data_dir}/contentBase/dataSet/event_result",
+                "hive_table_shop_history_event" : "${hive.table.shop.history.event}"
+            }
+        }
+    ],
+
+    "recommend_monitor": [
+        {
+            "path" : "scripts/start_robot.sh",
+            "replacement" : {
+                "ROBOT_ID" : "${cb_validator_robot_act_id}"
+            }
+        }
+    ],
+
+    "contentBase/userVector" : [
+        {
+            "path" : "conf/local.properties",
+            "replacement" : {
+                "datasource.remote.rest.host" : "${server_datasource_host}/",
+                "datasource.remote.rest.online.host" : "${server_datasource_online_host}/",
+                "tsmanagerStore.remote.rest.ranking.host" : "${server_tsmanager_host}/tsmanagerStore/ranking/",
+                "tsmanagerStore.remote.rest.blacklist.host" : "${server_tsmanager_host}/tsmanagerStore/blacklist/",
+                "tsmanagerStore.remote.rest.hotproduct.host" : "${server_tsmanager_host}/tsmanagerStore/hotproduct/",
+                "tsmanagerStore.remote.rest.pushevent.host" : "${server_tsmanager_host}/tsmanagerStore/pushevent/",
+                "tsmanagerStore.remote.rest.recommendedclipboard.host" : "${server_tsmanager_host}/tsmanagerStore/recommendclipboard/",
+                "tsmanagerStore.remote.rest.tsmanagersettings.host" : "${server_tsmanager_host}/tsmanagerStore/tsmanagersettings/",
+                "tsmanagerStore.remote.rest.host" : "${server_tsmanager_host}/tsmanagerStore/",
+                "product.remote.rest.host" : "${server_product_host}/",
+                "shop.algorithm.content.idf.file.path" : "${cb_common_data_dir}/contentBase/datatransfer/product.idf",
+                "shop.algorithm.content.idf.flag.file.path" : "${cb_common_data_dir}/contentBase/datatransfer/idf.flag",
+                "shop.algorithm.provider.commons.intertal.product.use.legacy" : "${internal.product.use.legacy}",
+                "temp.white.list" : "${cb_uservector_whitelist}",
+                "shop.algorithm.content.country.supported" : "${shop.algorithm.country.enabled}",
+                "shop.algorithm.content.country.simulate.multi" : "${shop.algorithm.country.simulate.multi}",
+                "shop.algorithm.content.clipboard.enabled" : "${shop.algorithm.content.clipboard.enabled}",
+                "process.abtest.config.path" : "${cb_common_app_dir}/recAbTestTool/conf/ab.conf",
+            }
+        },
+        {
+            "path" : "conf/clipboard.properties",
+            "replacement" : {
+                "clipboard.remote.rest.host" : "${server_clipboard_host}",
+            }
+        },
+        {
+            "path" : "conf/monitoring.properties",
+            "replacement" : {
+                "snmp.port" : "0"
+            }
+        },
+        {
+            "path" : "scripts/start_user_vector.sh",
+            "replacement" : {
+                "PS_TAG" : "user.vector.${cb_uservector_instance_id}.UserVectorMain"
+            }
+        },
+        {
+            "path" : "scripts/stop_user_vector.sh",
+            "replacement" : {
+                "PS_TAG" : "user.vector.${cb_uservector_instance_id}.UserVectorMain"
+            }
+        },
+        {
+            "path" : "scripts/importCBToDS.sh",
+            "replacement" : {
+                "REC" : "${hdfs.calculateCB-yarn.out.cb}",
+                "DS_HOST" : "${server_datasource_host_import}"
+            }
+        },
+        {
+            "path" : "scripts/importRecToDS.sh",
+            "replacement" : {
+                "REC" : "${hdfs.calculateCB-yarn.out.rec}",
+                "DS_HOST" : "${server_datasource_host_import}"
+            }
+        }
+    ],
+
+    "scheduler/apptemplates/contentbase_v2" : [
+        {
+            "path" : "conf/common.json",
+            "replacement" : {
+                "app_dir" : "${cb_common_app_dir}/contentBase",
+                "data_dir" : "${cb_common_data_dir}/contentBase",
+                "monitor_dir" : "${cb_common_app_dir}/recommend_monitor",
+                "candidate_list" : "${candidate.list}"
+            }
+        },
+        {
+            "path" : "conf/calFrdVector.json",
+            "replacement" : {
+                "base_dir" : "${cb_common_app_dir}/contentBase/friendVector"
+            }
+        },
+        {
+            "path" : "conf/tfidf.json",
+            "replacement" : {
+                "app_dir" : "${cb_job_tfidf_path_on_remote_node}",
+                "data_dir" : "${cb_job_tfidf_data_path_on_remote_node}"
+            }
+        },
+        {
+            "path" : "conf/uservectors.json",
+            "replacement" : {
+                "base_dir" : "${cb_user_vector_base_dir}",
+                "online_dir" : "${cb_user_vector_online_dir}"
+            }
+        },
+        {
+            "path" : "conf/validator.json",
+            "replacement" : {
+                "validator_user" : "${cb_validator_robot_act_id}"
+            }
+        },
+        {
+            "path" : "conf/nodes.json",
+            "replacement" : {
+                "path" : "${scheduler.task.node.tfidf.path}"
+            }
+        },
+        {
+            "path" : "conf/alertreceivers",
+            "all" : "${cb_job_alertreceivers}"
+        },
+        {
+            "path" : "conf/reportreceivers",
+            "all" : "${cb_job_reportreceivers}"
+        },
+        {
+            "path" : "conf/spark.json",
+            "replacement" : {
+                "base_dir" : "${spark.app.root}",
+                "abtest_local" : "${abtest.conf.local}",
+                "conf_local" : "${spark.conf.local}",
+                "conf_hdfs_dir" : "${spark.conf.dir}",
+                "candidate_local" : "${candidate_local}",
+                "candidate_hdfs" : "${hdfs.candidate}",
+                "candidate_boards_hdfs" : "${hdfs.candidate.boards}",
+                "userInfo_hdfs_dir" : "${hdfs.user.info}"
+            }
+        }
+    ],
+
+    "spark" : [
+        {
+            "path" : "scripts/calculateCB-yarn.sh",
+            "replacement" : {
+                "PVECTOR" : "${hdfs.product.vector}",
+                "PTEXT" : "${hdfs.product.text}",
+                "CANDIDATE" : "${hdfs.candidate}",
+                "CANDIDATE_BOARD_PATH" : "${hdfs.candidate.boards}",
+                "USERINFO" : "${hdfs.user.info}",
+                "EVENT_OUT_DIR" : "${hdfs.event.out.dir}",
+                "UVECTOR" : "${hdfs.user.vector}",
+                "BLACKLIST" : "${hdfs.user.product.blacklist}",
+                "SEARCHHISTORY" : "${hdfs.user.search.history}",
+                "USER" : "${hdfs.user.unique}",
+                "FRDVECTOR" : "${hdfs.user.friend.vector}",
+                "OUTPUT" : "${hdfs.calculateCB-yarn.out.cb}",
+                "RECOUT" : "${hdfs.calculateCB-yarn.out.rec}",
+                "CONF" : "${spark.contentBase.conf}",
+                "ABTEST" : "${abtest.contentBase.conf}"
+            }
+        },
+        {
+            "path" : "scripts/processEvents-yarn.sh",
+            "replacement" : {
+                "EVENT_PATH" : "${hdfs.event.out.dir}",
+                "PVECTOR" : "${hdfs.product.vector}",
+                "PTEXT" : "${hdfs.product.text}",
+                "CANDIDATE" : "${hdfs.candidate}",
+                "USERINFO" : "${hdfs.user.info}",
+                "IDF" : "${hdfs.product.idf}",
+                "USER_VECTOR_OUT" : "${hdfs.user.vector}",
+                "BLACK_LIST_OUT" : "${hdfs.user.product.blacklist}",
+                "SEARCH_RESULT_OUT" : "${hdfs.user.search.history}",
+                "UNIQUE_USER_OUT" : "${hdfs.user.unique}",
+
+
+                "CONF" : "${spark.contentBase.conf}",
+                "ABTEST" : "${abtest.contentBase.conf}"
+            }
+        },
+        {
+            "path" : "conf/ml.config",
+            "replacement" : {
+                "shop.algorithm.country.enabled" : "true"
+            }
+        }
+    ],
+
+    "contentBase/friendVector" : [
+        {
+            "path" : "scripts/calFriendVector.sh",
+            "replacement" : {
+                "DIR" : "${hadoop.calFriendVector.root}",
+                "AB" : "${hdfs.addressbook}",
+                "FRD" : "${hdfs.user.vector}",
+                "TEMP" : "${hadoop.calFriendVector.temp}",
+                "OUT" : "${hdfs.user.friend.vector}"
+            }
+        },
+        {
+            "path" : "scripts/start.sh",
+            "replacement" : {
+                "LIB" : "${cb_common_app_dir}/scheduler/lib"
+            }
+        },
+        {
+            "path" : "scripts/importFriendVectorToDS.sh",
+            "replacement" : {
+                "FRD" : "${hdfs.user.friend.vector}",
+                "DS_HOST" : "${server_datasource_host}"
+            }
+        }
+    ]
+}
